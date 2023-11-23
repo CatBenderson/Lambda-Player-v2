@@ -1,5 +1,5 @@
 import { CalendarIcon, InfoOutlineIcon, TimeIcon } from "@chakra-ui/icons";
-import { Box, Card, CardBody, Center, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Card, CardBody, Center, Grid, GridItem, Heading, Image, Text } from "@chakra-ui/react";
 
 export default function Song() {
     return (
@@ -24,49 +24,63 @@ export default function Song() {
                     <Center>
                         <Heading as="b" size="md">Artista</Heading>
                     </Center>
-                    <Center >
-                        <Box display="block" >
-                            <Box display="flex">
-                                <InfoOutlineIcon />
+                    <Center>
+                        <Grid templateColumns='repeat(10, 1fr)' gap={1}>
+                            <GridItem colSpan={1} maxWidth="10" minWidth="10" h='10' >
+                                <InfoOutlineIcon h='10' />
+                            </GridItem>
+                            <GridItem colSpan={4} h='10' >
                                 <Text fontSize='2xl' as="b" marginX="5%" css={{
                                     '@media screen and (max-width: 730px) , (max-height: 580px)': {
                                         fontSize: "20px"
                                     },
                                 }}>Album</Text>
+                            </GridItem>
+                            <GridItem colSpan={5} h='10' >
                                 <Text fontSize='2xl' marginLeft="5%" css={{
                                     '@media screen and (max-width: 730px) , (max-height: 580px)': {
                                         fontSize: "20px"
                                     },
                                 }}>Nombre del album</Text>
-                            </Box>
-                            <Box display="flex" >
-                                <CalendarIcon />
+                            </GridItem>
+                            <GridItem colSpan={1} maxWidth="10" minWidth="10" h='10' >
+                            <CalendarIcon  h='10' />
+                            </GridItem>
+                            <GridItem colSpan={4} h='10' >
                                 <Text fontSize='2xl' as="b" marginX="5%" css={{
                                     '@media screen and (max-width: 730px) , (max-height: 580px)': {
                                         fontSize: "20px"
                                     },
                                 }}>Año</Text>
+                            </GridItem>
+                            <GridItem colSpan={5} h='10' >
                                 <Text fontSize='2xl' marginLeft="5%" css={{
                                     '@media screen and (max-width: 730px) , (max-height: 580px)': {
                                         fontSize: "20px"
                                     },
                                 }}>2004</Text>
-                            </Box>
-                            <Box display="flex" >
-                                <TimeIcon />
+                            </GridItem>
+                            <GridItem colSpan={1} maxWidth="10" minWidth="10" h='10' >
+                            <TimeIcon  h='10' />
+                            </GridItem>
+                            <GridItem colSpan={4} h='10' >
                                 <Text fontSize='2xl' as="b" marginX="5%" css={{
                                     '@media screen and (max-width: 730px) , (max-height: 580px)': {
                                         fontSize: "20px"
                                     },
                                 }}>Duración</Text>
+                            </GridItem>
+                            <GridItem colSpan={5} h='10' >
                                 <Text fontSize='2xl' marginLeft="5%" css={{
                                     '@media screen and (max-width: 730px) , (max-height: 580px)': {
                                         fontSize: "20px"
                                     },
-                                }}>3:00</Text>
-                            </Box>
-                        </Box>
+                                }}>3:00 min</Text>
+                            </GridItem>
+                        </Grid>
                     </Center>
+
+                    
                 </CardBody>
             </Card>
         </Box>
