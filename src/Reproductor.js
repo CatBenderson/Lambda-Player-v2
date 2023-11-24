@@ -9,6 +9,7 @@ import {
     SliderFilledTrack,
     SliderThumb,
     Text,
+    Heading,
 } from '@chakra-ui/react';
 
 export default function Reproductor() {
@@ -17,28 +18,41 @@ export default function Reproductor() {
     const duracion = 90;
 
     return (
-        <Box p={30}>
+        <Box boxShadow='dark-lg' borderRadius="35px" m={30} >
             <Center>
-                <Card w="100vw" h="18vh" borderRadius="35px" minHeight="90px">
+                <Card w="100vw" h="18vh" borderRadius="35px" minHeight="90px" >
                     <CardBody>
                         <Center h="50%">
-                            <Text as="b" fontSize="lg">
+                            <Text color="#332D27" as="b" fontSize="lg">
                                 {inicio}
                             </Text>
-                            <Slider w="80vw" marginX={5} min={0} max={duracion} colorScheme="orange" defaultValue={45}>
+                            <Slider w="80vw" marginX={5} min={0} max={duracion} defaultValue={45}>
                                 <SliderTrack>
-                                    <SliderFilledTrack />
+                                    <SliderFilledTrack backgroundColor="#ED8936" />
                                 </SliderTrack>
-                                <SliderThumb />
+                                <SliderThumb backgroundColor="#ED8936" />
                             </Slider>
-                            <Text as="b" fontSize="lg">
+                            <Text color="#332D27" as="b" fontSize="lg">
                                 {fin}
                             </Text>
                         </Center>
-                        <Center h="50%">
-                            <Button variant='ghost' marginX="1vw">|◀</Button>
-                            <Button variant='ghost' marginX="1vw">▶</Button>
-                            <Button variant='ghost' marginX="1vw">▶|</Button>
+                        <Center h="50%" paddingX="2vw">
+                            <Center w="20%">
+                                <Heading size="md" color="#332D27">♫</Heading>
+                                <Slider w="90%" marginX={2} min={0} max={100} defaultValue={50}>
+                                    <SliderTrack>
+                                        <SliderFilledTrack backgroundColor="#ED4937" />
+                                    </SliderTrack>
+                                    <SliderThumb backgroundColor="#ED4937" />
+                                </Slider>
+                                <Heading size="sm" color="#332D27">100</Heading>
+                            </Center>
+                            <Center w="60%">
+                                <Button variant='ghost' marginX="1vw" color="#332D27">|◀</Button>
+                                <Button variant='ghost' marginX="1vw" color="#332D27">▶</Button>
+                                <Button variant='ghost' marginX="1vw" color="#332D27">▶|</Button>
+                            </Center>
+                            <Box w="20%"></Box>
                         </Center>
                     </CardBody>
                 </Card>

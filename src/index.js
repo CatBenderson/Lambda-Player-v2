@@ -11,6 +11,7 @@ const theme = extendTheme({
   fonts: {
     heading: `'Gabarito', sans-serif;`,
     body: `'Gabarito', sans-serif;`,
+    color: `#332D27;`,
   },
 
 })
@@ -18,8 +19,8 @@ const theme = extendTheme({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ChakraProvider theme={theme}>
-    <Box backgroundColor="#282828" w="100%" h="100%">
-      <Center>
+    <Box backgroundColor="#665F5A" w="100%" h="100%" minHeight="100vh">
+      <Center width="100vw" backgroundColor="#332D27" marginBottom={2}>
         <Heading size="2xl" color="white" marginY="2vh">LambdaPlayer</Heading>
       </Center>
       <Box display="flex" marginX={30}>
