@@ -87,7 +87,6 @@ export default function Song({songProp}) {
               <GridItem colSpan={5} h='10' >
                 <Text fontSize='2xl' marginLeft="5%" color="#544C46" css={fuenteResponsiva}>{Duration.fromObject({seconds: song.duracion}).toFormat('m:ss')}</Text>
               </GridItem>
-
             </Grid>
           </Center>
         </CardBody>
