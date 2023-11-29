@@ -23,6 +23,7 @@ const Home = () =>{
 
     const loadSongs = () =>{
         const song1 = {
+            index: 1,
             titulo: "After Dark",
             artista: "Mr.Kitty",
             album: "TIME",
@@ -33,6 +34,7 @@ const Home = () =>{
         };    
         
         const song2 = {
+            index: 2,
             titulo: "Y lloro",
             artista: "Junior h",
             album: "$ad Boyz 4 Life II",
@@ -43,6 +45,7 @@ const Home = () =>{
         };
 
         const song3 = {
+            index: 3,
             titulo: "Red Swan",
             artista: "Yoshiki feat Hyde",
             album: "進撃の巨人",
@@ -53,6 +56,7 @@ const Home = () =>{
         };
 
         const song4 = {
+            index: 4,
             titulo: "Come Alive",
             artista: "Jackson Wang",
             album: "physical",

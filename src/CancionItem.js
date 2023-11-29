@@ -1,11 +1,8 @@
 import { AddIcon } from "@chakra-ui/icons";
 import { Box, Card, Grid, GridItem, Heading, Image, Flex, AbsoluteCenter, Button } from "@chakra-ui/react";
 
-export default function CancionItem({song}) {
+export default function CancionItem({ song }) {
     const fuenteResponsivaT = {
-        '@media screen and (max-width: 8px)': {
-            fontSize: "16px",
-        },
         '@media screen and (max-width: 715px)': {
             fontSize: "14px",
         },
@@ -25,6 +22,11 @@ export default function CancionItem({song}) {
                 <Grid templateColumns='repeat(10, 1fr)' gap={0}  >
                     <GridItem colSpan={1} minWidth="10" marginStart={3}>
                         <AbsoluteCenter axis='vertical'>
+                            <Heading size="lg">{song.index}</Heading>
+                        </AbsoluteCenter>
+                    </GridItem>
+                    <GridItem colSpan={1} minWidth="10" marginStart={3}>
+                        <AbsoluteCenter axis='vertical'>
                             <Flex align="center" justify="center">
                                 <Image
                                     borderRadius='full'
@@ -34,7 +36,7 @@ export default function CancionItem({song}) {
                             </Flex>
                         </AbsoluteCenter>
                     </GridItem>
-                    <GridItem colSpan={7}  minWidth="70" >
+                    <GridItem colSpan={6} minWidth="70" >
                         <AbsoluteCenter axis='vertical'>
                             <Heading size="md" color="#332D27" css={fuenteResponsivaT}> {song.titulo}  </Heading>
                             <Heading size="sm" color="#544C46"> {song.artista}</Heading>
