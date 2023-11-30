@@ -15,12 +15,12 @@ export default function ModalComandos() {
                         <Text m={2}><b>"Reproducir" - </b> Quita la pausa </Text>
                         <Text m={2}><b>"Detener" - </b> Poner pausa </Text>
                         <Text m={2}><b>"Número de canción - "</b> Reproduce la canción con el número dicho</Text>
-                        <Text m={2}><b>"Anterior" - </b> Reproduce la siguiente canción </Text>
-                        <Text m={2}><b>"Siguiente" - </b> Reproduce la canción anterior </Text>
+                        <Text m={2}><b>"Anterior" - </b>  Reproduce la canción anterior  </Text>
+                        <Text m={2}><b>"Siguiente" - </b> Reproduce la siguiente canción </Text>
                         <Text m={2}><b>"Comenzar de nuevo" - </b> Reinciar canción actual </Text>
                         <Text m={2}><b>"Silenciar" - </b> Bajar volumen a 0 </Text>
-                        <Text m={2}><b>"Bajar" - </b> Bajar volumen (10) </Text>
-                        <Text m={2}><b>"Subir" - </b> Subir volumen (10) </Text>
+                        <Text m={2}><b>"Bajar" - </b> Bajar volumen -10 </Text>
+                        <Text m={2}><b>"Subir" - </b> Subir volumen +10 </Text>
                     </ModalBody>
 
                     <ModalFooter>
