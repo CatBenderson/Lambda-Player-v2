@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { extendTheme, ChakraProvider, Box, Heading, Center } from '@chakra-ui/react'
+import {Box} from '@chakra-ui/react'
 
 import Reproductor from "./Reproductor"
 import Song from './Song';
@@ -14,14 +14,15 @@ import img1 from "./Assets/Images/AfterDark.jpeg"
 import img2 from "./Assets/Images/YLloro.jpg"
 import img3 from "./Assets/Images/RedSwan.jpg"
 import img4 from "./Assets/Images/ComeAlive.jpg"
+import NavBar from "./NavBar";
 
-const Home = () =>{
+const Home = () => {
     const [song, setSong] = useState(null);
 
     const [songs, setSongs] = useState([]);
-    const [currentSongIndex, setCurrentSongIndex] = useState(0);    
+    const [currentSongIndex, setCurrentSongIndex] = useState(0);
 
-    const loadSongs = () =>{
+    const loadSongs = () => {
         const song1 = {
             index: 1,
             titulo: "After Dark",
@@ -31,8 +32,8 @@ const Home = () =>{
             duracion: 257.28,
             portada: img1,
             src: Cancion1SRC
-        };    
-        
+        };
+
         const song2 = {
             index: 2,
             titulo: "Y lloro",
@@ -63,36 +64,34 @@ const Home = () =>{
             anio: "2022",
             duracion: 172.46405,
             portada: img4,
-            src: Cancion4SRC      
-        };        
+            src: Cancion4SRC
+        };
         setSongs([song1, song2, song3, song4]);
     }
 
-    const updateCurrentSongIndex = (index) =>{
+    const updateCurrentSongIndex = (index) => {
         setCurrentSongIndex(index);
     }
 
-    useEffect(()=>{                        
-        loadSongs();        
-    },[])
+    useEffect(() => {
+        loadSongs();
+    }, [])
 
-    useEffect(()=>{
-        setSong(songs[currentSongIndex])        
-    },[songs, currentSongIndex])
-    
-    return(
-    <>    
-    <Box backgroundColor="#665F5A" w="100%" h="100%" minHeight="100vh">
-      <Center width="100vw" backgroundColor="#332D27" marginBottom={2}>
-        <Heading size="2xl" color="white" marginY="2vh">LambdaPlayer</Heading>
-      </Center>
-      <Box display="flex" marginX={30}>
-        {song && <Song songProp={song}/>}
-        {songs && <Busqueda songsProp={songs}/>}
-      </Box>
-      {song && <Reproductor songProp={song} updateCurrentSongIndex={updateCurrentSongIndex} songsLength={songs.length} currentSongIndex={currentSongIndex}/>}
-    </Box>    
-    </>
+    useEffect(() => {
+        setSong(songs[currentSongIndex])
+    }, [songs, currentSongIndex])
+
+    return (
+        <>
+            <Box backgroundColor="#665F5A" w="100%" h="100%" minHeight="100vh">
+                <NavBar/>
+                <Box display="flex" marginX={30}>
+                    {song && <Song songProp={song} />}
+                    {songs && <Busqueda songsProp={songs} />}
+                </Box>
+                {song && <Reproductor songProp={song} updateCurrentSongIndex={updateCurrentSongIndex} songsLength={songs.length} currentSongIndex={currentSongIndex} />}
+            </Box>
+        </>
     );
 }
 

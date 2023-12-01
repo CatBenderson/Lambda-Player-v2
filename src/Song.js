@@ -1,9 +1,11 @@
-import { CalendarIcon, InfoOutlineIcon, TimeIcon } from "@chakra-ui/icons";
+import { CalendarIcon, TimeIcon } from "@chakra-ui/icons";
 import { Box, Card, CardBody, Center, Grid, GridItem, Heading, Image, Text } from "@chakra-ui/react";
 import { Duration } from "luxon";
+import { BsDiscFill } from "react-icons/bs";
+import { IconContext } from "react-icons";
 import { useEffect, useState } from "react";
 
-export default function Song({songProp}) {   
+export default function Song({ songProp }) {
   const [song, setSong] = useState({
     titulo: "",
     artista: "",
@@ -11,7 +13,8 @@ export default function Song({songProp}) {
     anio: "",
     duracion: 0.0,
     portada: "",
-    src: ""});
+    src: ""
+  });
 
   const fuenteResponsiva = {
     '@media screen and (max-width: 890px), (max-height: 580px)': {
@@ -31,9 +34,9 @@ export default function Song({songProp}) {
     },
   };
 
-  useEffect(()=>{    
+  useEffect(() => {
     setSong(songProp)
-  },[songProp])
+  }, [songProp])
 
   return (
     <Box boxShadow='dark-lg' borderRadius="35px" position="relative" marginRight={30} w="40%">
@@ -42,7 +45,7 @@ export default function Song({songProp}) {
           <Center>
             <Box >
               <Image
-                
+
                 minWidth="100px"
                 minHeight="100px"
                 borderRadius='full'
@@ -61,7 +64,9 @@ export default function Song({songProp}) {
           <Center>
             <Grid templateColumns='repeat(10, 1fr)' gap={1}>
               <GridItem colSpan={1} maxWidth="10" minWidth="10" h='10' >
-                <InfoOutlineIcon h='10'  color="#ED4937" />
+              <IconContext.Provider value={{ verticalAlign: 'middle', size: "50%" }} >
+                <BsDiscFill marginTop="100px" h="100%" color="#ED4937" />
+                </IconContext.Provider>
               </GridItem>
               <GridItem colSpan={4} h='10' >
                 <Text fontSize='2xl ' as="b" marginX="5%" color="#332D27" css={fuenteResponsiva}>Album</Text>
@@ -70,7 +75,7 @@ export default function Song({songProp}) {
                 <Text fontSize='xl' marginLeft="5%" color="#544C46" css={fuenteResponsiva}>{song.album}</Text>
               </GridItem>
               <GridItem colSpan={1} maxWidth="10" minWidth="10" h='10' >
-                <CalendarIcon h='10' marginTop={2}  color="#ED4937"/>
+                <CalendarIcon h='10' marginTop={2} color="#ED4937" />
               </GridItem>
               <GridItem colSpan={4} h='10' marginTop={2}>
                 <Text fontSize='2xl' as="b" marginX="5%" color="#332D27" css={fuenteResponsiva}>Año</Text>
@@ -79,13 +84,13 @@ export default function Song({songProp}) {
                 <Text fontSize='2xl' marginLeft="5%" color="#544C46" css={fuenteResponsiva}>{song.anio}</Text>
               </GridItem>
               <GridItem colSpan={1} maxWidth="10" minWidth="10" h='10' >
-                <TimeIcon h='10'  color="#ED4937"/>
+                <TimeIcon h='10' color="#ED4937" />
               </GridItem>
               <GridItem colSpan={4} h='10' >
                 <Text fontSize='2xl' as="b" marginX="5%" color="#332D27" css={fuenteResponsiva}>Duración</Text>
               </GridItem>
               <GridItem colSpan={5} h='10' >
-                <Text fontSize='2xl' marginLeft="5%" color="#544C46" css={fuenteResponsiva}>{Duration.fromObject({seconds: song.duracion}).toFormat('m:ss')}</Text>
+                <Text fontSize='2xl' marginLeft="5%" color="#544C46" css={fuenteResponsiva}>{Duration.fromObject({ seconds: song.duracion }).toFormat('m:ss')}</Text>
               </GridItem>
             </Grid>
           </Center>

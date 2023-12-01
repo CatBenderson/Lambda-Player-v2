@@ -4,7 +4,7 @@ export default function ModalComandos() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
         <>
-            <Button size="sm" backgroundColor="#ED4937" color="white" onClick={onOpen}>Comandos</Button>
+            <Button size="md" backgroundColor="#ED4937" color="white" onClick={onOpen}>Comandos</Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
@@ -22,7 +22,6 @@ export default function ModalComandos() {
                         <Text m={2}><b>"Bajar" - </b> Bajar volumen -10 </Text>
                         <Text m={2}><b>"Subir" - </b> Subir volumen +10 </Text>
                     </ModalBody>
-
                     <ModalFooter>
                         <Button backgroundColor="#ED4937" color="white" mr={3} onClick={onClose}>
                             Ok

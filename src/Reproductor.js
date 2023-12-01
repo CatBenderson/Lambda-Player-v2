@@ -10,7 +10,12 @@ import {
     SliderThumb,
     Text,
     Heading,
+    Grid,
+    GridItem,
+    AbsoluteCenter,
 } from '@chakra-ui/react';
+import { IoIosMic, IoIosMicOff } from "react-icons/io";
+import { IconContext } from "react-icons";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { Duration } from 'luxon';
 import { useEffect, useRef, useState } from 'react';
@@ -75,7 +80,7 @@ export default function Reproductor({ songProp, updateCurrentSongIndex, songsLen
     }
 
     const loadDataHandler = () => {
-        SpeechRecognition.startListening({continuous:true})
+        SpeechRecognition.startListening({ continuous: true })
         setIsReady(true);
     }
 
@@ -114,7 +119,7 @@ export default function Reproductor({ songProp, updateCurrentSongIndex, songsLen
     useEffect(() => {
         if (counter >= audioRef.current.duration) {
             SpeechRecognition.stopListening()
-            SpeechRecognition.startListening({continuous:true})
+            SpeechRecognition.startListening({ continuous: true })
             setCounter(0);
         }
     }, [counter])
@@ -126,57 +131,65 @@ export default function Reproductor({ songProp, updateCurrentSongIndex, songsLen
 
     useEffect(() => {
         if (audioRef) {
-          audioRef.current.volume = volumen / 100;
+            audioRef.current.volume = volumen / 100;
         }
-      }, [volumen, audioRef]);
+    }, [volumen, audioRef]);
 
 
 
-    useEffect(() => {        
+    useEffect(() => {
         if (transcript == "siguiente") {
             nextSong()
         } else if (transcript == "anterior") {
             backSong()
-        }else if(transcript=="uno"){            
+        } else if (transcript == "uno") {
             updateCurrentSongIndex(0)
-        }else if(transcript=="dos"){            
+        } else if (transcript == "dos") {
             updateCurrentSongIndex(1)
-        }else if(transcript=="tres"){            
+        } else if (transcript == "tres") {
             updateCurrentSongIndex(2)
-        }else if(transcript=="cuatro"){            
+        } else if (transcript == "cuatro") {
             updateCurrentSongIndex(3)
-        }else if(transcript=="reproducir" ){    
-            if (!isPlaying){
+        } else if (transcript == "reproducir") {
+            if (!isPlaying) {
                 playPauseHandler()
-            }                   
-        }else if(transcript=="subir"){     
-            var x =  volumen + 10
-            if (x<=100){
+            }
+        } else if (transcript == "subir") {
+            var x = volumen + 10
+            if (x <= 100) {
                 setVolumen(x)
             }
             setVolumen();
-        }else if(transcript=="bajar"){
-            var x =  volumen - 10
-            if (x>=0){
+        } else if (transcript == "bajar") {
+            var x = volumen - 10
+            if (x >= 0) {
                 setVolumen(x)
             }
             setVolumen();
-        }else if(transcript=="silenciar"){
+        } else if (transcript == "silenciar") {
             setVolumen(0);
-        }else if(transcript=="comenzar"){
+        } else if (transcript == "comenzar") {
             setSliderValue(0);
             setCounter(0);
-            audioRef.current.currentTime=sliderValue;
-        }else if (transcript=="detener"){
+            audioRef.current.currentTime = sliderValue;
+        } else if (transcript == "detener") {
             if (isPlaying) {
                 playPauseHandler()
-            }                  
+            }
         }
 
-        
+
         resetTranscript()
 
     }, [transcript]);
+
+    function mic(){
+        if (listening){
+            SpeechRecognition.stopListening()
+        }else{
+            SpeechRecognition.startListening({ continuous: true })
+        }
+    }
 
 
 
@@ -185,7 +198,7 @@ export default function Reproductor({ songProp, updateCurrentSongIndex, songsLen
             <audio ref={audioRef} src={song.src} onLoadedData={loadDataHandler} />
             <Box boxShadow='dark-lg' borderRadius="35px" m={30}  >
                 <Center>
-                    <Card w="100vw" h="18vh" borderRadius="35px" minHeight="90px" minWidth="300px" >
+                    <Card w="100vw" h="18vh" borderRadius="35px" minHeight="90px" minWidth="550px" >
                         <CardBody>
                             <Center h="50%">
                                 <Text color="#332D27" as="b" fontSize="lg">
@@ -201,32 +214,55 @@ export default function Reproductor({ songProp, updateCurrentSongIndex, songsLen
                                     {Duration.fromObject({ seconds: song.duration }).toFormat('m:ss')}
                                 </Text>
                             </Center>
-                            <Center h="50%" paddingX="2vw">
-                                <Center w="20%">
-                                    <Heading size="md" color="#332D27">♫</Heading>
-                                    <Slider w="90%" marginX={2} min={0} max={100} value={volumen} onChange={volumenOnChange}>
-                                        <SliderTrack>
-                                            <SliderFilledTrack backgroundColor="#ED4937" />
-                                        </SliderTrack>
-                                        <SliderThumb backgroundColor="#ED4937" />
-                                    </Slider>
-                                    <Heading size="sm" color="#332D27">{volumen}</Heading>
-                                </Center>
-                                <Center marginX="3%" w="30%">
-                                    <Button variant='ghost' marginX="1vw" color="#332D27" onClick={backSong}>|◀</Button>
-                                    <Button variant='ghost' marginX="1vw" color="#332D27" onClick={playPauseHandler}>{isPlaying ? '| |' : '▶'}</Button>
-                                    <Button variant='ghost' marginX="1vw" color="#332D27" onClick={nextSong}>▶|</Button>
-                                </Center>
-                                <Box w="20%">
-                                    <Text as="b" color="#ED4937" css={fuenteResponsivaT}> {listening ? ' Te estoy escuchando' : 'No recibo tus indicaciones'}</Text>                                    
-                                </Box>
-                                <Box w="20%" maxWidth="10%">
-                                    <ModalComandos></ModalComandos>
-                                </Box>
-                            </Center>
+                            
+
+
+                                <Grid paddingX="2%" templateColumns='repeat(11, 1fr)' h="40%" gap={0} >
+                                    <GridItem colSpan={4} display="flex" >
+                                        <Center >
+                                        <Heading size="md" color="#332D27">♫</Heading>
+                                        <Slider w="20vw" marginX={2} min={0} max={100} value={volumen} onChange={volumenOnChange}>
+                                            <SliderTrack>
+                                                <SliderFilledTrack backgroundColor="#ED4937" />
+                                            </SliderTrack>
+                                            <SliderThumb backgroundColor="#ED4937" />
+                                        </Slider>
+                                        <Heading size="sm" color="#332D27">{volumen}</Heading>
+                                        </Center>
+                                    </GridItem>
+                                    <GridItem colSpan={1}>
+                                        <Button variant='ghost' color="#332D27" onClick={backSong}>|◀</Button>
+                                    </GridItem>
+                                    <GridItem colSpan={1}>
+                                        <Button variant='ghost' marginX="1vw" color="#332D27" onClick={playPauseHandler}>{isPlaying ? '| |' : '▶'}</Button>
+                                    </GridItem>
+                                    <GridItem colSpan={1}>
+                                        <Button variant='ghost' marginX="1vw" color="#332D27" onClick={nextSong}>▶|</Button>
+                                    </GridItem>
+                                    <GridItem colSpan={3} align="right" >
+                                        {listening ?
+                                            <Text  marginRight="10px" as="b" color="#ED4937" css={fuenteResponsivaT}> Te estoy escuchando</Text>
+                                            :
+                                            <Text marginRight="10px" as="b" color="#ED4937" css={fuenteResponsivaT}>No te puedo escuchar</Text>
+                                        }
+                                    </GridItem>
+                                    <GridItem colSpan={1}>
+                                        {listening ?
+                                            <IconContext.Provider value={{ verticalAlign: 'bottom', size: "50%" }} >
+                                                <IoIosMic onClick={mic} color="#ED4937" />
+                                            </IconContext.Provider>
+                                            :
+                                            <IconContext.Provider value={{ verticalAlign: 'bottom', size: "50%" }} >
+                                                <IoIosMicOff onClick={mic} color="#ED4937" />
+                                            </IconContext.Provider>
+                                        }
+                                    </GridItem>
+                                </Grid>
+                                
+                            
                         </CardBody>
                     </Card>
                 </Center>
-            </Box></>
+            </Box ></>
     );
 }

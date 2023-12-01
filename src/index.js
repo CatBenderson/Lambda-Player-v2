@@ -1,5 +1,5 @@
 import React from 'react';
-import { extendTheme, ChakraProvider, Box, Heading, Center } from '@chakra-ui/react'
+import { extendTheme, ChakraProvider } from '@chakra-ui/react'
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
