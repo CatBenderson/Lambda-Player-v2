@@ -12,14 +12,12 @@ import {
     Heading,
     Grid,
     GridItem,
-    AbsoluteCenter,
 } from '@chakra-ui/react';
 import { IoIosMic, IoIosMicOff } from "react-icons/io";
 import { IconContext } from "react-icons";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { Duration } from 'luxon';
 import { useEffect, useRef, useState } from 'react';
-import ModalComandos from './ModalComandos';
 
 export default function Reproductor({ songProp, updateCurrentSongIndex, songsLength, currentSongIndex }) {
 
@@ -66,6 +64,13 @@ export default function Reproductor({ songProp, updateCurrentSongIndex, songsLen
     const nextSong = () => {
         audioRef.current.currentTime = 0;
         updateCurrentSongIndex((prevIndex) => (prevIndex + 1) % songsLength);
+        setCounter(0);
+        setIsReady(false);
+    }
+
+    const selectedSong = (num) => {
+        audioRef.current.currentTime = 0;
+        updateCurrentSongIndex(num);
         setCounter(0);
         setIsReady(false);
     }
@@ -138,49 +143,48 @@ export default function Reproductor({ songProp, updateCurrentSongIndex, songsLen
 
 
     useEffect(() => {
-        if (transcript == "siguiente") {
+        if (transcript === "siguiente") {
             nextSong()
-        } else if (transcript == "anterior") {
+        } else if (transcript === "anterior") {
             backSong()
-        } else if (transcript == "uno") {
-            updateCurrentSongIndex(0)
-        } else if (transcript == "dos") {
-            updateCurrentSongIndex(1)
-        } else if (transcript == "tres") {
-            updateCurrentSongIndex(2)
-        } else if (transcript == "cuatro") {
-            updateCurrentSongIndex(3)
-        } else if (transcript == "reproducir") {
+        } else if (transcript === "uno") {
+            selectedSong(0)
+        } else if (transcript === "dos") {
+            selectedSong(1)
+        } else if (transcript === "tres") {
+            selectedSong(2)
+        } else if (transcript === "cuatro") {
+            selectedSong(3)
+        } else if (transcript === "reproducir") {
             if (!isPlaying) {
                 playPauseHandler()
             }
-        } else if (transcript == "subir") {
-            var x = volumen + 10
-            if (x <= 100) {
-                setVolumen(x)
+        } else if (transcript === "subir") {
+            var volumenTotalS = volumen + 10
+            if (volumenTotalS <= 100) {
+                setVolumen(volumenTotalS)
             }
             setVolumen();
-        } else if (transcript == "bajar") {
-            var x = volumen - 10
-            if (x >= 0) {
-                setVolumen(x)
+        } else if (transcript === "bajar") {
+            var volumenTotalB = volumen - 10
+            if (volumenTotalB >= 0) {
+                setVolumen(volumenTotalB)
             }
             setVolumen();
-        } else if (transcript == "silenciar") {
+        } else if (transcript === "silenciar") {
             setVolumen(0);
-        } else if (transcript == "comenzar") {
+        } else if (transcript === "comenzar") {
             setSliderValue(0);
             setCounter(0);
             audioRef.current.currentTime = sliderValue;
-        } else if (transcript == "detener") {
+        } else if (transcript === "de") {
             if (isPlaying) {
                 playPauseHandler()
             }
         }
 
-
         resetTranscript()
-
+    // eslint-disable-next-line
     }, [transcript]);
 
     function mic(){
