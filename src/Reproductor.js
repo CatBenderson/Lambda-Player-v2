@@ -18,6 +18,7 @@ import { IconContext } from "react-icons";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { Duration } from 'luxon';
 import { useEffect, useRef, useState } from 'react';
+import noti from "./Assets/Music/notificacion.mp3"
 
 export default function Reproductor({ songProp, updateCurrentSongIndex, songsLength, currentSongIndex }) {
 
@@ -45,6 +46,7 @@ export default function Reproductor({ songProp, updateCurrentSongIndex, songsLen
     const [song, setSong] = useState({ src: songProp.src, duration: songProp.duracion })
     const [counter, setCounter] = useState(0);
     const audioRef = useRef(null);
+    const audioRef2 = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isReady, setIsReady] = useState(false);
     const [sliderValue, setSliderValue] = useState(0);
@@ -144,40 +146,55 @@ export default function Reproductor({ songProp, updateCurrentSongIndex, songsLen
 
     useEffect(() => {
         if (transcript === "siguiente") {
+            audioRef2.current.play();
             nextSong()
         } else if (transcript === "anterior") {
+            audioRef2.current.play();
             backSong()
         } else if (transcript === "uno") {
+            audioRef2.current.play();
             selectedSong(0)
         } else if (transcript === "dos") {
+            audioRef2.current.play();
             selectedSong(1)
         } else if (transcript === "tres") {
+            audioRef2.current.play();
             selectedSong(2)
         } else if (transcript === "cuatro") {
+            audioRef2.current.play();
             selectedSong(3)
+        } else if (transcript === "cinco") {
+            audioRef2.current.play();
+            selectedSong(4)
         } else if (transcript === "reproducir") {
+            audioRef2.current.play();
             if (!isPlaying) {
                 playPauseHandler()
             }
         } else if (transcript === "subir") {
+            audioRef2.current.play();
             var volumenTotalS = volumen + 10
             if (volumenTotalS <= 100) {
                 setVolumen(volumenTotalS)
             }
             setVolumen();
         } else if (transcript === "bajar") {
+            audioRef2.current.play();
             var volumenTotalB = volumen - 10
             if (volumenTotalB >= 0) {
                 setVolumen(volumenTotalB)
             }
             setVolumen();
         } else if (transcript === "silenciar") {
+            audioRef2.current.play();
             setVolumen(0);
         } else if (transcript === "comenzar") {
+            audioRef2.current.play();
             setSliderValue(0);
             setCounter(0);
             audioRef.current.currentTime = sliderValue;
         } else if (transcript === "de") {
+            audioRef2.current.play();
             if (isPlaying) {
                 playPauseHandler()
             }
@@ -199,6 +216,7 @@ export default function Reproductor({ songProp, updateCurrentSongIndex, songsLen
 
     return (
         <>
+        <audio ref={audioRef2} src={noti} onLoadedData={loadDataHandler} />
             <audio ref={audioRef} src={song.src} onLoadedData={loadDataHandler} />
             <Box boxShadow='dark-lg' borderRadius="35px" m={30}  >
                 <Center>

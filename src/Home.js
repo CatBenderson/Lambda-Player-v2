@@ -9,11 +9,13 @@ import Cancion1SRC from "./Assets/Music/After Dark.mp3"
 import Cancion2SRC from "./Assets/Music/Y lloro - Junior H.mp3"
 import Cancion3SRC from "./Assets/Music/Red Swan - Yoshiki feat Hyde.mp3"
 import Cancion4SRC from "./Assets/Music/Come Alive - Jackson Wang.mp3"
+import Cancion5SRC from "./Assets/Music/ギルティ†クロス - ECLIPSE.m4a"
 
 import img1 from "./Assets/Images/AfterDark.jpeg"
 import img2 from "./Assets/Images/YLloro.jpg"
 import img3 from "./Assets/Images/RedSwan.jpg"
 import img4 from "./Assets/Images/ComeAlive.jpg"
+import img5 from "./Assets/Images/GuiltyCross.jpg"
 import NavBar from "./NavBar";
 
 const Home = () => {
@@ -66,7 +68,17 @@ const Home = () => {
             portada: img4,
             src: Cancion4SRC
         };
-        setSongs([song1, song2, song3, song4]);
+        const song5 = {
+            index: 5,
+            titulo: "ギルティ†クロス",
+            artista: "ECLIPSE",
+            album: "ギルティ†クロス",
+            anio: "2021",
+            duracion: 275.899501,
+            portada: img5,
+            src: Cancion5SRC
+        };
+        setSongs([song1, song2, song3, song4, song5]);
     }
 
     const updateCurrentSongIndex = (index) => {
